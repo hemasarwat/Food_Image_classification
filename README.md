@@ -1,18 +1,18 @@
 # Transfer Learning for Food Image Classification
 
-Hey there! This project shows how we can use **transfer learning** to classify food images with just a small dataset. We're using EfficientNet models to tell apart pizza, steak, and sushi — think of it as teaching a smart model to recognize new foods by building on what it already knows.
+This project shows how we can use **transfer learning** to classify any images dataset, we're using food dataset. We're using EfficientNet models to tell apart pizza, steak, and sushi think of it as teaching a smart model to recognize new foods.
 
 ## Dataset
 
-We worked with a tiny but mighty dataset: pizza, steak, and sushi images. It's a subset of the bigger Food101 dataset, perfect for quick experiments. Each class has about 225 pictures for training and 75 for testing. Total? Around 750 images. Small, but enough to see transfer learning in action!
+We worked with a tiny but mighty dataset: pizza, steak, and sushi images. It's a subset of the bigger Food101 dataset Each class has about 225 pictures for training and 75 for testing.
 
 ## Model Architecture
 
 We tried two versions of EfficientNet:
 - **EfficientNet-B0**: A lightweight model with a 1280-dimensional feature space.
-- **EfficientNet-B2**: A bit bigger, with 1408 dimensions for potentially better accuracy.
+- **EfficientNet-B2**: A bit bigger, with 1408 dimensions for better accuracy.
 
-Both models have the same basic structure: a feature extractor (the "brain" that learns patterns) and a classifier head (the "decision maker" for our 3 food classes). The classifier is simple: a dropout layer for stability, followed by a linear layer that outputs 3 scores (one per class).
+Both models have the same basic structure: a feature extractor and a classifier head --> "decision maker" for our 3 food classes. The classifier is simple: a dropout layer for stability, followed by a linear layer that outputs 3 scores (one per class).
 
 ## Transfer Learning Approach
 
@@ -21,9 +21,9 @@ Here's the magic: We loaded pretrained EfficientNet models trained on ImageNet (
 ## Metrics
 
 To see how well our models did, we tracked:
-- **Accuracy**: What percentage of images were classified correctly?
-- **Loss curves**: How training and test losses changed over epochs (should go down smoothly).
-- **Confusion matrix**: A heatmap showing where the model got confused (e.g., did it mix up pizza and steak?).
+- **Accuracy**
+- **Loss curves**
+- **Confusion matrix**
 
 We also looked at the most confident wrong predictions to understand failure modes.
 
@@ -36,4 +36,4 @@ We compared B0 and B2 side by side:
 | EfficientNet-B0 | ~4M         | ~4K             | 10     | Fast, good for small tasks |
 | EfficientNet-B2 | ~7M         | ~6K             | 5      | More accurate, but needs more memory |
 
-Both models learned super quickly thanks to pretraining — no need for hundreds of epochs! B2 often edges out B0 in accuracy because of its larger feature space, but B0 is simpler and trains faster. For this tiny dataset, B0 was usually enough, but B2 showed how scaling up can help.
+Both models learned fast and very accurate that goes to pretraining, B2 often edges out B0 in accuracy because of its larger feature space, but B0 is simpler and trains faster. For this tiny dataset, B0 was usually enough, but B2 showed how scaling up can help.
